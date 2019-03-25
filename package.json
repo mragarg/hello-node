@@ -4,13 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "db:create" : "createdb restaurants-app",
+    "db:init":"psql -f schema.sql restaurants-app && psql -f seed.sql restaurants-app",
+    "db:destroy":"dropdb restaurants-app",
+    "db:reset":"npm run db:destroy; npm run db:create && npm run db:init",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cowsay": "^1.4.0"
-  }
+    "cowsay": "^1.4.0",
+    "pg-promise": "^8.6.4"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mragarg/hello-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mragarg/hello-node/issues"
+  },
+  "homepage": "https://github.com/mragarg/hello-node#readme"
 }
