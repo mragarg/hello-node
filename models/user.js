@@ -4,8 +4,14 @@ const db = require('./conn');
 // Need a User...object? thing? something?
 class User {
 
-    constructor()
-    
+    constructor(id, first_name, last_name, email, password) {
+        this.id = id;
+        this.firstName = first_name;
+        this.lastName = last_name;
+        this.email = email;
+        this.password = password;
+    }
+
     // "static" means that the function is something 
     // the class can do, but an instance cannot.
     static getById(id) {
