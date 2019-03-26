@@ -18,7 +18,10 @@ class User {
         // .any always returns an array
         // Instead, we'll use .one
         // return db.any(`select * from users where id=${id}`);
-        return db.one(`select * from users where id=${id}`);
+        return db.one(`select * from users where id=${id}`)
+                    .then((userData) => {
+                        const userInstance = new User();
+                    })
     }
 
 }
