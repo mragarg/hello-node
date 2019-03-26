@@ -18,9 +18,25 @@ async function main(){
 	const user3 = await getUserById2(3);	// "await" waits for promises 
 											// it's like an implicit ".then"
 	console.log(user3);
+
+	// // Promise Method
+	// getUserById(3)
+	// 	.then(function (user3) {
+	// 		console.log(user3);
+	// 	});
 }
 
-main();
+// main();
+
+async function main2() {
+	const idArray = [1, 2, 3, 4];
+	idArray.forEach(function (id) {
+		const user = await getUserById2(id);
+		console.log(user);
+	});
+}
+
+main2();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
