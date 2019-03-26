@@ -19,14 +19,14 @@ chai.use(chaiAsPromised).should();
 // USERS TEST
 describe('Users model', () => {
 
-    // 😃 PATH
+    // 😃 PATH (happy)
     it('should be able to retreieve by id', async () => {
         const theUser = await User.getById(3);
         theUser.should.be.an.instanceOf(User);
         // theUser.should.have.length(1);
     })
 
-    // 😞 PATH
+    // 😞 PATH (sad)
     it('should be able to retreieve by id', async () => {
         const theUser = await User.getById(276345);
         expect(theUser).to.be.null;
@@ -34,6 +34,7 @@ describe('Users model', () => {
         // theUser.should.have.length(1);
     })
 
+    // Updates user's email
     it('should update the user', async () => {
         // grab a user with id 2
         const theUser = await User.getById(2);
@@ -53,8 +54,12 @@ describe('Users model', () => {
 
 // RESTAURANT TESTS
 describe('Restaurant model', () => { 
-    it('should be able to grab an array of restaurants', () => {
+
+    // Grabs an array of restaurants
+    it('should be able to grab an array of restaurants', async () => {
         const arrayOfRestaurants = await Restaurant.getAll();
         expect(arrayOfRestaurants).to.be.instanceOf(Array);
     });
+
+
 });
