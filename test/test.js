@@ -1,3 +1,4 @@
+const User = require('../models/user')
 
 // const assert = require('assert');
 
@@ -16,6 +17,7 @@ chai.use(chaiAsPromised).should();
 describe('Users model', () => {
     it('should be able to retreieve by id', async () => {
         const theUser = await User.getById(3);
-        theUser.should.be.an.instanceOf(User);
+        // theUser.should.be.an.instanceOf(User);
+        theUser.should.have.length(1);
     })
 });
