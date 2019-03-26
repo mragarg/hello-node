@@ -23,14 +23,17 @@ class User {
                         const userInstance = new User(userData.id, userData.first_name, userData.last_name, userData.email, userData.password);
                         return userInstance;
                     })
+                    .catch(() => {
+                        return null;
+                    })
     }
 
 }
 
-User.getById(3)
-    .then((user) => {
-        console.log(user);
-    })
+// User.getById(3)
+//     .then((user) => {
+//         console.log(user);
+//     })
 
 // Export my User model
 module.exports = User;
