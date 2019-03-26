@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Restaurant = require('../models/restaurants')
 
 // const assert = require('assert');
 
@@ -14,6 +15,8 @@ chai.use(chaiAsPromised).should();
 //     });
 // });
 
+
+// USERS TEST
 describe('Users model', () => {
 
     // 😃 PATH
@@ -35,9 +38,23 @@ describe('Users model', () => {
         // grab a user with id 2
         const theUser = await User.getById(2);
         // update the email
-        theUser.email = "new@new.com";
+        theUser.email = 'new@new.com';
         // save the user
-        // re-grab the user with id 2
-        // expect the email = to the new value
+        theUser.save()
+            .then(async (report) => {
+                // console.log(report);
+                // re-grab the user with id 2
+                const alsoTheUser = await User.getById(2);
+                // expect the email = to the new value
+                expect(alsoTheUser.email).to.equal('new@new.com');
+            });
+    });
+});
+
+// RESTAURANT TESTS
+describe('Restaurant model', () => { 
+    it('should be able to grab an array of restaurants', () => {
+        const arrayOfRestaurants = await Restaurant.getAll();
+        expect(arrayOfRestaurants).to.be.instanceOf(Array);
     });
 });
