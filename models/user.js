@@ -20,7 +20,8 @@ class User {
         // return db.any(`select * from users where id=${id}`);
         return db.one(`select * from users where id=${id}`)
                     .then((userData) => {
-                        const userInstance = new User();
+                        const userInstance = new User(userData.id, userData.first_name, userData.last_name, userData.email, userData.password);
+                        return userInstance;
                     })
     }
 
