@@ -30,7 +30,7 @@ async function main(){
 
 async function main2() {
 	const idArray = [1, 2, 3, 4];
-	idArray.forEach(function (id) {
+	idArray.forEach(async function (id) {
 		const user = await getUserById2(id);
 		console.log(user);
 	});
