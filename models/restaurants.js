@@ -8,8 +8,6 @@ class Restaurant{
         return db.any('select * from restaurants');
     }
 
-    
-
 }
 
 module.exports = Restaurant;

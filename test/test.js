@@ -1,5 +1,6 @@
-const User = require('../models/user')
-const Restaurant = require('../models/restaurants')
+const User = require('../models/user');
+const Restaurant = require('../models/restaurants');
+const Review = require('../models/reviews');
 
 // const assert = require('assert');
 
@@ -60,6 +61,15 @@ describe('Restaurant model', () => {
         const arrayOfRestaurants = await Restaurant.getAll();
         expect(arrayOfRestaurants).to.be.instanceOf(Array);
     });
+});
 
+// REVIEWS TESTS
 
+describe('Review model', () => {
+    
+    // Grabs an array of reviews
+    it('should be able to grab an array of reviews', async () => {
+        const arrayOfReviews = await Review.getAllReviews();
+        expect(arrayOfReviews).to.be.instanceOf(Array);
+    });
 });
