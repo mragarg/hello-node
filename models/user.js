@@ -1,6 +1,7 @@
 // Bring in the database connection
 const db = require('./conn');
 const Review = require('./reviews');
+const bcrypt = require('bcryptjs');
 
 // Need a User...object? thing? something?
 class User {
@@ -35,7 +36,6 @@ class User {
         // .result is used when you might want a report about how many rows 
         // got affected
         return db.result(`
-
             update users set
                 first_name='${this.firstName}',
                 last_name='${this.lastName}',
@@ -67,6 +67,17 @@ class User {
 
                 return arrayOfReviewInstances;
             });
+    }
+
+    setPassword(newPassword){
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(newPassword, salt);
+        this.password = hash;
+    }
+
+    checkPassword(aPassword){
+        const isCorrect = bcrypt.compareSync(aPassword, this.password);
+        return isCorrect;
     }
 }
 

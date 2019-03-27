@@ -53,13 +53,31 @@ describe('Users model', () => {
     });
 
     it('should encrypt the password', async () => {
+        const password = "bacon";
+        // get a user with id 1
+        const theUser = await User.getById(1);
+        // set their password field to "bacon"
+        theUser.setPassword(password);
+        // compare their password to "bacon"
+        expect(theUser.password).not.to.equal(password);
+        // it should be false
+    });
+
+    it('should be able to check for correct passwords', async () => {
         // get a user with id 1
         const theUser = await User.getById(1);
         // set their password field to "bacon"
         theUser.setPassword("bacon");
-        // compare their password to "bacon"
-        expect(theUser.password).not.to.equal("bacon");
-        // it should be false
+        // save them to the databse
+        await theUser.save();
+        // get them back out of the database
+        const sameUser = await User.getById(1);
+        // ask them if their password is "bacon"
+        const isCorrectPassword = theUser.checkPassword("bacon");
+        expect(isCorrectPassword).to.be.true;
+
+        const isNotCorrectPassword = theUser.checkPassword("tofu");
+        expect(isNotCorrectPassword).to.be.false;
     });
 });
 
@@ -73,7 +91,7 @@ describe('Restaurant model', () => {
     });
 });
 
-// // REVIEWS TESTS
+// // REVIEWS TESTS Practice
 // describe('Review model', () => {
     
 //     // Grabs an array of reviews
