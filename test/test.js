@@ -93,6 +93,15 @@ describe('Review model', () => {
             expect(aBunchOfReviews[i]).to.be.an.instanceOf(Review);
         }
     });
+});
 
+describe('Users and Reviews', () => {
     // Can I get a review by user?
+    it('A user instance should be able to retrieve all their reviews', async () => {
+        // grab a user by id
+        // then get all their reviews
+        // confirm that their reviews are in an array
+        // and that the array is the correct length
+        // and that each one is an instance of Review
+    });
 });
