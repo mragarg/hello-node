@@ -1,6 +1,7 @@
 // Bring in the database connection
 const db = require('./conn');
 const Review = require('./reviews');
+const Favorite = require('./favorites');
 const bcrypt = require('bcryptjs');
 
 // Need a User...object? thing? something?
@@ -66,6 +67,24 @@ class User {
 
 
                 return arrayOfReviewInstances;
+            });
+    }
+
+    // get all favorites from this user
+    getFavorites(){
+        return db.any(`select * from favorites where user_id=${this.id}`)
+            .then((arrayOfFavoriteData) => {
+                const arrayOfFavoriteInstances = [];
+
+                    arrayOfFavoriteData.forEach((data) => {
+                        const newInstance = new Favorite(
+                            data.id,
+                            data.user_id,
+                            data.restaurant_id
+                        );
+                        arrayOfFavoriteInstances.push(newInstance);
+                    });
+                return arrayOfFavoriteInstances;
             });
     }
 

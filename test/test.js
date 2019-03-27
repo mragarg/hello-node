@@ -8,6 +8,7 @@ chai.use(chaiAsPromised).should();
 const User = require('../models/user');
 const Restaurant = require('../models/restaurants');
 const Review = require('../models/reviews');
+const Favorite = require('../models/favorites');
 
 // describe('Sanity check', function () {
 //     it('should be 2', function () {
@@ -136,8 +137,29 @@ describe('Users and Reviews', () => {
         // and that the array is the correct length, which should be 5 
         expect(theReviews).to.have.lengthOf(5);
         // and that each one is an instance of Review
-        for(let i=0; i <theReviews.length; i++){
+        for(let i=0; i < theReviews.length; i++){
             expect(theReviews[i]).to.be.an.instanceOf(Review);
         }
     });
+});
+
+// Favorite Model
+describe('Favorite model', () => {
+
+    // Get all favorites of a single user
+    it('should be able to grab an array of the users all favorites', async () => {
+        // grab a user by id 1 
+        const theUser = await User.getById(1);
+        // then get all of their favorites
+        const theFavorites = await theUser.getFavorites();
+        // favorites must be in an array
+        expect(theFavorites).to.be.instanceOf(Array);
+        // array is correct length (3)
+        expect(theFavorites).to.have.lengthOf(3);
+        // and that each one is an intance of Favorite
+        for(let i=0; i< theFavorites.length; i++){
+            expect(theFavorites[i]).to.be.an.instanceOf(Favorite);
+        }
+    });
+
 });
