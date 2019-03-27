@@ -64,7 +64,6 @@ describe('Restaurant model', () => {
 });
 
 // REVIEWS TESTS
-
 describe('Review model', () => {
     
     // Grabs an array of reviews
