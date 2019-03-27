@@ -79,7 +79,7 @@ describe('Review model', () => {
     it('should be able to retrieve a review by id', async () => {
         // hopes and dreams
         const thatReview = await Review.getById(2);
-        expect (thatReview).to.be.an.instanceOf(Review)
+        expect(thatReview).to.be.an.instanceOf(Review);
     });
     // Can I get all reviews?
     // Can I get a review by user?

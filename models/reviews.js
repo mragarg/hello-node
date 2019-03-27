@@ -13,7 +13,16 @@ class Review {
 
     // Gets a single review by ID
     static getById(id) {
-        return db.one(`select * from reviews where id=${id}`);
+        return db.one(`select * from reviews where id=${id}`)
+            .then((reviewData) => {
+                return new Review(
+                    reviewData.id,
+                    reviewData.score,
+                    reviewData.content,
+                    reviewData.restaurant_id,
+                    reviewData.user_id
+                );
+            });
     }
 
     static getAllReviews(){
