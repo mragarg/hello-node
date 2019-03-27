@@ -46,7 +46,7 @@ class User {
     }
 
     // get all reviews written by this user
-    getReviews() {
+    get reviews() {
         return db.any(`select * from reviews where user_id=${this.id}`)
             .then((arrayOfReviewData) => {
                 // Equivalent to using .map (from reviews.js)
