@@ -51,6 +51,16 @@ describe('Users model', () => {
                 expect(alsoTheUser.email).to.equal('new@new.com');
             });
     });
+
+    it('should encrypt the password', async () => {
+        // get a user with id 1
+        const theUser = await User.getById(1);
+        // set their password field to "bacon"
+        theUser.setPassword("bacon");
+        // compare their password to "bacon"
+        expect(theUser.password).not.to.equal("bacon");
+        // it should be false
+    });
 });
 
 // RESTAURANT TESTS
