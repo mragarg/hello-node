@@ -98,10 +98,17 @@ describe('Review model', () => {
 describe('Users and Reviews', () => {
     // Can I get a review by user?
     it('A user instance should be able to retrieve all their reviews', async () => {
-        // grab a user by id
+        // grab a user by id 2
+        const theUser = await User.getById(2);
         // then get all their reviews
+        const theReviews = await theUser.getReviews();
         // confirm that their reviews are in an array
-        // and that the array is the correct length
+        expect(theReviews).to.be.an.instanceOf(Array);
+        // and that the array is the correct length, which should be 5 
+        expect(theReviews).to.have.lengthOf(5);
         // and that each one is an instance of Review
+        for(let i=0; i <theReviews.length; i++){
+            expect(theReviews[i]).to.be.an.instanceOf(Review);
+        }
     });
 });
