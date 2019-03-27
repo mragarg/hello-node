@@ -39,6 +39,9 @@ insert into reviews
 values
 	(5, 'That vinegarette though', 1, 1),
 	(4, 'Amazing service, but creepy smile', 3, 2),
+	(4, 'Amazing service, but creepy smile', 3, 2),
+	(4, 'Amazing service, but creepy smile', 3, 2),
+	(4, 'Amazing service, but creepy smile', 3, 2),
 	(3, 'Steak tough, not tender. WTF', 1, 2),
 	(5, 'Good to get lit at', 4, 1)
 ;

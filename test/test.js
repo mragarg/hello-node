@@ -72,3 +72,11 @@ describe('Review model', () => {
         expect(arrayOfReviews).to.be.instanceOf(Array);
     });
 });
+
+// REVIEWS TESTS EXAMPLE
+describe('Reviews', () => {
+    // Can I get one review?
+    it('should be able to retrieve a review by id', () => {});
+    // Can I get all reviews?
+    // Can I get a review by user?
+});
