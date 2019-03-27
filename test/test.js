@@ -1,13 +1,13 @@
-const User = require('../models/user');
-const Restaurant = require('../models/restaurants');
-const Review = require('../models/reviews');
-
 // const assert = require('assert');
 
 const chai = require('chai');
 const expect = chai.expect;
 const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised).should();
+
+const User = require('../models/user');
+const Restaurant = require('../models/restaurants');
+const Review = require('../models/reviews');
 
 // describe('Sanity check', function () {
 //     it('should be 2', function () {
@@ -63,20 +63,24 @@ describe('Restaurant model', () => {
     });
 });
 
-// REVIEWS TESTS
-describe('Review model', () => {
+// // REVIEWS TESTS
+// describe('Review model', () => {
     
-    // Grabs an array of reviews
-    it('should be able to grab an array of reviews', async () => {
-        const arrayOfReviews = await Review.getAllReviews();
-        expect(arrayOfReviews).to.be.instanceOf(Array);
-    });
-});
+//     // Grabs an array of reviews
+//     it('should be able to grab an array of reviews', async () => {
+//         const arrayOfReviews = await Review.getAllReviews();
+//         expect(arrayOfReviews).to.be.instanceOf(Array);
+//     });
+// });
 
 // REVIEWS TESTS EXAMPLE
-describe('Reviews', () => {
+describe('Review model', () => {
     // Can I get one review?
-    it('should be able to retrieve a review by id', () => {});
+    it('should be able to retrieve a review by id', async () => {
+        // hopes and dreams
+        const thatReview = await Review.getById(2);
+        expect (thatReview).to.be.an.instanceOf(Review)
+    });
     // Can I get all reviews?
     // Can I get a review by user?
 });
