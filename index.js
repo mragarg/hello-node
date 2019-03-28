@@ -10,7 +10,7 @@ const User = require('./models/user');
 // "Helper function"  === "middleware"
 // a.k.a. "Request handler"
 const server = http.createServer(async (req, res) => {
-	console.log(req.url);
+	console.log(req);
 
 	res.statusCode = 200;
 	res.setHeader('Content-Type', 'application/json');
@@ -26,28 +26,41 @@ const server = http.createServer(async (req, res) => {
 	} 
 	else if(req.url.startsWith('/users')){
 
-		const parts = req.url.split("/");
-		console.log(parts);
-		// when the req.url is "/users", parts is ['', 'users']
-		// when the req.url is "/users/3" parts is ['', 'users', '3']
+		const method = req.method;
+		if(method === "GET"){
+			const parts = req.url.split("/");
+			console.log(parts);
+			// when the req.url is "/users", parts is ['', 'users']
+			// when the req.url is "/users/3" parts is ['', 'users', '3']
+	
+	
+			if(parts.length === 2){
+				const oneUser = await User.getAll();
+				const userJSON = JSON.stringify(oneUser);
+				res.end(userJSON);
+			}
+			else if(parts.length === 3){
+				// the id will be parts[2]
+				const userId = parts[2];
+				// get user by id
+				const theUser = await User.getById(userId);
+				const userJSON = JSON.stringify(theUser);
+				res.end(userJSON);
+			}
+			else{
+				res.statusCode = 404;
+				res.end('Resource not found.');
+			}
 
-
-		if(parts.length === 2){
-			const oneUser = await User.getAll();
-			const userJSON = JSON.stringify(oneUser);
-			res.end(userJSON);
+		} 
+		else if(method === "POST") {
+			res.end('{message: "it sounds like you would like to create"}');
 		}
-		else if(parts.length === 3){
-			// the id will be parts[2]
-			const userId = parts[2];
-			// get user by id
-			const theUser = await User.getById(userId);
-			const userJSON = JSON.stringify(theUser);
-			res.end(userJSON);
+		else if(method === "PUT") {
+			res.end('{message: "you wanna update, doncha?"}');
 		}
-		else{
-			res.statusCode = 404;
-			res.end('Resource not found.');
+		else if(method === "DELETE") {
+			res.end('{message:"rm the user"}');
 		}
 
 
