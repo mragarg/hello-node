@@ -18,15 +18,26 @@ const server = http.createServer(async (req, res) => {
 	// if req.url is "/restaurants", send them all restaurants
 	// if it's "/users", send a list of users
 	// else if it doesn't match either, send a welcome message
+	const method = req.method;
 
 	if(req.url === "/restaurants"){
-		const allRestaurants = await Restaurant.getAll();
-		const restaurantJSON = JSON.stringify(allRestaurants)
-		res.end(restaurantJSON);
+		if(method === "GET"){
+			const allRestaurants = await Restaurant.getAll();
+			const restaurantJSON = JSON.stringify(allRestaurants)
+			res.end(restaurantJSON);
+		}
+		if(method === "POST") {
+			res.end('{message: "it sounds like you would like to create"}');
+		}
+		if(method === "PUT") {
+			res.end('{message: "you wanna update, doncha?"}');
+		}
+		if(method === "DELETE") {
+			res.end('{message:"rm the user"}');
+		}
 	} 
 	else if(req.url.startsWith('/users')){
 
-		const method = req.method;
 		if(method === "GET"){
 			const parts = req.url.split("/");
 			console.log(parts);
